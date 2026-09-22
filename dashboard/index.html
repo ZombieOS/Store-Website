@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Manage your ZOS Store projects and analytics.">
+  <title>Dashboard — ZOS Store</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/account.css">
+  <script type="module" src="../js/dashboard-auth.js?v=2"></script>
+</head>
+<body class="dashboard-body dashboard-pending">
+  <aside class="dashboard-sidebar">
+    <a class="brand dashboard-brand" href="../index.html"><img src="https://www.zsharp.zombieos.com/zsharp.png" alt=""><span>ZOS Store</span></a>
+    <div class="account-chip"><div class="avatar" id="dashboard-avatar">Z</div><div><strong id="dashboard-name">ZombieOS user</strong><span>ZDP member</span></div></div>
+
+    <nav aria-label="Dashboard navigation">
+      <p>DEVELOPER</p>
+      <a class="active" href="index.html"><span>⌂</span> Overview</a>
+      <a href="projects.html"><span>□</span> Projects</a>
+      <a href="organizations.html"><span>◇</span> Organizations</a>
+      <a href="verify.html"><span>✓</span> Verify</a>
+      
+      <p>ACCOUNT</p>
+      <a id="dashboard-profile-link" href="profile.html"><span>○</span> Profile</a>
+      <a href="settings.html"><span>⚙</span> Settings</a>
+    </nav>
+
+    <a class="sidebar-store-link" href="../index.html">← Back to Store</a>
+  </aside>
+
+  <main class="dashboard-main">
+    <header class="dashboard-header">
+      <div><p class="section-label">DEVELOPER DASHBOARD</p><h1>Welcome back.</h1></div>
+      <a class="primary-button" href="projects.html?new=1">New project <span>+</span></a>
+    </header>
+
+    <section class="stat-grid" aria-label="Store analytics">
+      <article class="stat-card downloads-card">
+        <div class="stat-heading"><span>Downloads</span><small>All time</small></div>
+        <strong id="dashboard-downloads">0</strong>
+        <p>Across all published projects</p>
+        <div class="mini-chart" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      </article>
+
+      <article class="stat-card">
+        <div class="stat-heading"><span>Published projects</span><small>Live</small></div>
+        <strong id="dashboard-published">0</strong>
+        <p><b id="dashboard-apps">0</b> published apps · <b id="dashboard-games">0</b> published games</p>
+        <a href="#projects">View projects →</a>
+      </article>
+    </section>
+
+    <section class="dashboard-section" id="projects">
+      <div class="dashboard-section-heading"><div><p class="section-label">YOUR WORK</p><h2>Projects</h2></div><a href="projects.html">View all →</a></div>
+      <p id="dashboard-project-status" role="status">Loading your projects…</p>
+      <div class="dashboard-project-list" id="dashboard-project-list" hidden></div>
+      <div class="dashboard-empty" id="dashboard-project-empty" hidden><div class="empty-project-icon">+</div><h3>No projects yet.</h3><p>Create a project when you are ready to submit your first .zapp or .zgame.</p><a class="primary-button" href="projects.html?new=1">Create project <span>→</span></a></div>
+    </section>
+
+    <section class="dashboard-note" id="verify">
+      <div><p class="section-label">DEVELOPER VERIFICATION</p><h2>Verify your Store profile.</h2><p>Prove domain ownership with DNS, or reach 500,000 downloads across your published projects.</p></div>
+      <a class="primary-button" href="verify.html">Open verification <span>→</span></a>
+    </section>
+  </main>
+
+  <div class="membership-overlay" id="membership-overlay" hidden>
+    <section class="membership-popup" role="dialog" aria-modal="true" aria-labelledby="membership-title">
+      <div class="membership-icon" aria-hidden="true">DEV</div>
+      <p class="section-label">DEVELOPER ACCESS REQUIRED</p>
+      <h2 id="membership-title">You’re not a ZDP member.</h2>
+      <p>To access the ZOS Store developer dashboard, your account needs an active ZombieOS Developer Program membership.</p>
+      <div class="membership-actions">
+        <a class="back-button" href="../index.html">Back to Store</a>
+        <a class="primary-button" href="../dev.html">Sign up for ZDP <span>→</span></a>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

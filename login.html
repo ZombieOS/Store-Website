@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sign in to the ZOS Store with your ZombieOS account.">
+  <title>Sign in — ZOS Store</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/account.css">
+  <script type="module" src="js/login.js"></script>
+</head>
+<body class="account-body">
+  <header class="site-header shell">
+    <a class="brand" href="index.html" aria-label="ZOS Store home"><img src="https://www.zsharp.zombieos.com/zsharp.png" alt=""><span>ZOS Store</span></a>
+    <nav aria-label="Main navigation"><a href="index.html">Home</a><a href="apps.html">Apps</a><a href="games.html">Games</a><a href="index.html#developers">Developers</a></nav>
+    <a class="nav-cta" href="index.html">Back to Store <span aria-hidden="true">→</span></a>
+  </header>
+
+  <main class="login-layout shell">
+    <section class="login-intro">
+      <div class="eyebrow"><span></span> ONE ACCOUNT ACROSS ZOMBIEOS</div>
+      <h1>Your Store.<br><em>Your account.</em></h1>
+      <p>Use your ZombieOS account to manage your library, publish projects through the ZDP, and see how your releases are doing.</p>
+      <div class="login-points">
+        <span><b>01</b> Manage apps and games</span>
+        <span><b>02</b> View publishing analytics</span>
+        <span><b>03</b> Work with organizations</span>
+      </div>
+    </section>
+
+    <section class="login-panel" aria-labelledby="login-title">
+      <div class="login-logo"><img src="https://www.zsharp.zombieos.com/zsharp.png" alt=""></div>
+      <p class="section-label">ZOMBIEOS ACCOUNT</p>
+      <h2 id="login-title">Sign in to continue</h2>
+      <p class="panel-copy">Your ZOS Store identity is connected to your ZombieOS account.</p>
+
+      <form id="login-form" novalidate>
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" autocomplete="username" required>
+
+        <div class="password-label"><label for="password">Password</label><a href="https://www.zombieos.com/forgot-password">Forgot password?</a></div>
+        <div class="password-field">
+          <input id="password" name="password" type="password" autocomplete="current-password" required>
+          <button id="toggle-password" type="button" aria-label="Show password">Show</button>
+        </div>
+
+        <button class="primary-button login-button" type="submit">Sign in <span>→</span></button>
+      </form>
+
+      <div class="auth-divider"><span>OR</span></div>
+      <div class="social-auths">
+        <button id="google-login" class="social-button" type="button"><img src="https://www.zombieos.com/images/icons/google.png" alt=""><span>Google</span></button>
+        <button id="github-login" class="social-button" type="button"><img src="https://www.zombieos.com/images/icons/github.png" alt=""><span>GitHub</span></button>
+        <button class="social-button disabled-button" type="button" disabled><img src="https://www.zombieos.com/images/icons/discord.png" alt=""><span>Discord</span><small>Later</small></button>
+        <button class="social-button disabled-button" type="button" disabled><img src="https://www.zombieos.com/images/icons/apple.png" alt=""><span>Apple</span><small>Later</small></button>
+        <button class="social-button disabled-button" type="button" disabled><img src="https://www.zombieos.com/images/icons/microsoft.png" alt=""><span>Microsoft</span><small>Later</small></button>
+      </div>
+      <p class="create-account">No ZombieOS account? <a href="https://www.zombieos.com/signup">Create one</a></p>
+    </section>
+  </main>
+  <div class="popup-overlay" id="popup-overlay" hidden>
+    <section class="popup-box" role="dialog" aria-modal="true" aria-labelledby="popup-title">
+      <div class="popup-mark" aria-hidden="true">Z#</div><p class="section-label">ZOMBIEOS ACCOUNT</p><h2 id="popup-title">Login</h2><p id="popup-message"></p>
+      <div class="popup-buttons"><button id="popup-cancel" type="button">Cancel</button><button id="popup-confirm" class="primary-button" type="button">OK</button></div>
+    </section>
+  </div>
+</body>
+</html>

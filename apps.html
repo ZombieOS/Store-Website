@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Browse every application available on the ZOS Store.">
+  <title>Apps — ZOS Store</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/apps.css">
+  <script type="module" src="js/apps.js?v=2"></script>
+  <script type="module" src="js/session.js"></script>
+</head>
+<body>
+  <header class="site-header shell">
+    <a class="brand" href="index.html" aria-label="ZOS Store home"><img src="https://www.zsharp.zombieos.com/zsharp.png" alt=""><span>ZOS Store</span></a>
+    <nav aria-label="Main navigation"><a href="index.html">Home</a><a class="active" href="apps.html">Apps</a><a href="games.html">Games</a><a href="index.html#developers">Developers</a></nav>
+    <a class="nav-cta" data-account-control href="login.html">Sign in <span aria-hidden="true">→</span></a>
+  </header>
+
+  <main>
+    <section class="apps-hero shell">
+      <div>
+        <div class="eyebrow"><span></span> ZOS STORE CATALOG</div>
+        <h1>Every app.<br><em>One place.</em></h1>
+      </div>
+      <p>Explore reviewed and Store-signed <strong>.zapp</strong> applications built for the ZVM.</p>
+    </section>
+
+    <section class="catalog-tools shell" aria-label="App catalog controls">
+      <label class="search-box" for="app-search">
+        <span aria-hidden="true">⌕</span>
+        <input id="app-search" type="search" placeholder="Search apps or publishers..." autocomplete="off">
+        <kbd>Ctrl K</kbd>
+      </label>
+
+      <div class="filter-cluster">
+        <label class="sort-box" for="app-sort">
+          <span>Sort by</span>
+          <span class="select-shell">
+            <select id="app-sort">
+              <option value="alphabetical">Alphabetical</option>
+              <option value="newest">Newest</option>
+              <option value="oldest">Oldest</option>
+              <option value="updated">Recently updated</option>
+              <option value="downloads">Most downloads</option>
+            </select>
+          </span>
+        </label>
+        <div class="pricing-box" aria-disabled="true" title="Paid apps are coming later">
+          <span>Pricing</span>
+          <strong>Free only</strong>
+          <span class="lock" aria-hidden="true">●</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="apps-section shell" aria-live="polite">
+      <div class="results-header">
+        <p><strong id="result-count">0</strong> <span id="result-label">apps</span></p>
+        <button id="clear-search" type="button" hidden>Clear search</button>
+      </div>
+
+      <div class="apps-grid" id="apps-grid"></div>
+
+      <div class="empty-state" id="empty-state">
+        <img src="https://www.zsharp.zombieos.com/zsharp.png" alt="">
+        <p class="section-label">THE CATALOG IS READY</p>
+        <h2 id="empty-title">No apps published yet.</h2>
+        <p id="empty-copy">The first reviewed .zapp release will appear here automatically.</p>
+        <a class="primary-button" href="index.html#developers">Publish the first app <span>→</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer shell">
+    <div class="footer-identity"><strong>ZOS Store</strong><span>Built by ZombieOS</span></div>
+    <nav class="footer-links" aria-label="Official links"><span>LINKS</span><a href="#privacy">Privacy</a><a href="#terms">Terms</a><a href="https://www.zsharp.zombieos.com/">Z# <b>↗</b></a><a href="https://www.zombieos.com/">ZombieOS <b>↗</b></a></nav>
+    <p class="license">Apache License 2.0</p>
+  </footer>
+</body>
+</html>

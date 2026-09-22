@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Join ZDP — ZOS Store</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/account.css">
+  <link rel="stylesheet" href="css/zdp-signup.css">
+  <script type="module" src="js/session.js"></script>
+  <script type="module" src="js/zdp-signup.js"></script>
+</head>
+<body>
+  <header class="site-header shell">
+    <a class="brand" href="index.html"><img src="https://www.zsharp.zombieos.com/zsharp.png" alt=""><span>ZOS Store</span></a>
+    <nav><a href="index.html">Home</a><a href="apps.html">Apps</a><a href="games.html">Games</a><a class="active" href="dev.html">Developers</a></nav>
+    <a class="nav-cta" data-account-control href="login.html">Sign in <span>→</span></a>
+  </header>
+  <main class="zdp-signup shell">
+    <section class="zdp-signup-copy"><p class="section-label">ZOMBIEOS DEVELOPER PROGRAM</p><h1>Build it.<br><em>Publish it.</em></h1><p>ZDP membership is free. Tell us where people can find your work and you can start creating Store projects immediately.</p><div class="zdp-steps"><div><b>01</b><span>Join with your website</span></div><div><b>02</b><span>Create your ZDP profile</span></div><div><b>03</b><span>Verify a domain later</span></div></div></section>
+    <section class="zdp-signup-card"><p class="section-label">FREE DEVELOPER MEMBERSHIP</p><h2>Join ZDP</h2><p>Enter a website you own or use for your work.</p><form id="zdp-signup-form"><label for="developer-website">Website</label><input id="developer-website" type="url" required placeholder="https://example.com" autocomplete="url"><small>Domain ownership is checked separately if you apply for verification.</small><p id="signup-status" role="status"></p><button class="primary-button" type="submit">Join the developer program <span>→</span></button></form><div id="signin-required" hidden><p>Sign in with your ZombieOS account before joining.</p><a class="primary-button" href="login.html?next=dev.html">Sign in <span>→</span></a></div></section>
+  </main>
+</body>
+</html>

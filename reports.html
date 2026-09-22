@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Reports — ZOS Store</title>
+  <link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/reviews.css"><link rel="stylesheet" href="css/report.css">
+  <script type="module" src="js/session.js"></script><script type="module" src="js/staff-reports.js?v=2"></script>
+</head>
+<body>
+  <header class="site-header shell"><a class="brand" href="index.html"><img src="https://www.zsharp.zombieos.com/zsharp.png" alt=""><span>ZOS Store</span></a><nav><a href="index.html">Home</a><a href="reviews.html">Version reviews</a><a class="active" href="reports.html">Reports</a></nav><a class="nav-cta" data-account-control href="login.html">Sign in <span>→</span></a></header>
+  <main class="reviews-page shell"><header><p class="section-label">STAFF MODERATION</p><h1>Reports.</h1><p>Review project and profile reports from Store members.</p></header>
+    <p class="review-error" id="reports-error" role="alert" hidden></p>
+    <section class="queue-section"><div class="queue-heading"><div><p class="section-label">NEEDS REVIEW</p><h2>Open reports</h2></div><span id="open-count">0 open</span></div><div class="version-review-list" id="open-reports"></div><p class="queue-empty" id="open-empty">No open reports.</p></section>
+    <section class="queue-section"><div class="queue-heading"><div><p class="section-label">HISTORY</p><h2>Handled reports</h2></div></div><div class="version-review-list" id="handled-reports"></div><p class="queue-empty" id="handled-empty">No handled reports yet.</p></section>
+  </main>
+</body>
+</html>

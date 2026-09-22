@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="View a ZOS Store profile.">
+  <title>Profile — ZOS Store</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/profiles.css">
+  <link rel="stylesheet" href="css/report.css">
+  <script type="module" src="js/session.js"></script>
+  <script type="module" src="js/profiles.js?v=4"></script>
+</head>
+<body>
+  <header class="site-header shell">
+    <a class="brand" href="index.html" aria-label="ZOS Store home"><img src="https://www.zsharp.zombieos.com/zsharp.png" alt=""><span>ZOS Store</span></a>
+    <nav aria-label="Main navigation"><a href="index.html">Home</a><a href="apps.html">Apps</a><a href="games.html">Games</a><a href="index.html#developers">Developers</a></nav>
+    <a class="nav-cta" data-account-control href="login.html">Sign in <span aria-hidden="true">→</span></a>
+  </header>
+
+  <main class="profile-page shell">
+    <section class="profile-loading" id="profile-loading"><span></span><p>Loading Store profile...</p></section>
+
+    <section class="profile-error" id="profile-error" hidden>
+      <div class="profile-error-icon">?</div><p class="section-label">PROFILE NOT FOUND</p><h1>Nothing lives here yet.</h1><p id="profile-error-copy">Check the profile name and try again.</p><a class="primary-button" href="index.html">Back to Store <span>→</span></a>
+    </section>
+
+    <article class="public-profile" id="public-profile" hidden>
+      <p class="profile-moderation-notice" id="profile-moderation-notice" hidden>This profile is suspended by the Store. Its projects are unlisted and unavailable for download.</p>
+      <div class="profile-banner"><img id="profile-banner" alt=""></div>
+      <div class="profile-content">
+        <header class="profile-identity">
+          <div class="profile-avatar"><img id="profile-avatar" alt=""></div>
+          <div class="profile-names"><div class="profile-type" id="profile-type">DEVELOPER</div><div class="profile-name-line"><h1 id="profile-name"></h1><span class="profile-verification" id="profile-verification" title="Verified Store profile" aria-label="Verified Store profile" hidden>✓</span></div><p id="profile-handle"></p></div>
+          <a class="profile-action" id="profile-action" href="#projects">View projects <span>→</span></a><button class="report-button" id="report-profile" type="button">Report profile</button>
+        </header>
+
+        <div class="profile-grid">
+          <section class="profile-card profile-about"><p class="section-label">ABOUT</p><p class="profile-bio" id="profile-bio"></p><p class="profile-pronouns" id="profile-pronouns"></p></section>
+          <section class="profile-card" id="badges-card"><p class="section-label">BADGES</p><div class="profile-badges" id="profile-badges"></div></section>
+          <section class="profile-card profile-socials-card"><p class="section-label" id="links-label">SOCIALS</p><div class="profile-socials" id="profile-socials"></div></section>
+        </div>
+
+        <section class="profile-projects" id="projects"><div><p class="section-label">STORE RELEASES</p><h2>Published projects</h2></div><div class="profile-project-list" id="profile-project-list"><div class="profile-projects-empty">Published apps and games from this profile will appear here.</div></div></section>
+      </div>
+    </article>
+  </main>
+
+  <footer class="footer shell"><div class="footer-identity"><strong>ZOS Store</strong><span>Built by ZombieOS</span></div><nav class="footer-links" aria-label="Official links"><span>LINKS</span><a href="#privacy">Privacy</a><a href="#terms">Terms</a><a href="https://www.zsharp.zombieos.com/">Z# <b>↗</b></a><a href="https://www.zombieos.com/">ZombieOS <b>↗</b></a></nav><p class="license">Apache License 2.0</p></footer>
+</body>
+</html>

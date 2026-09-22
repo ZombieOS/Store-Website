@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZDP Profile — ZOS Store</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/account.css">
+  <link rel="stylesheet" href="../css/zdp-profile.css">
+  <script type="module" src="../js/zdp-profile.js"></script>
+</head>
+<body class="dashboard-body dashboard-pending">
+  <aside class="dashboard-sidebar">
+    <a class="brand dashboard-brand" href="../index.html"><img src="https://www.zsharp.zombieos.com/zsharp.png" alt=""><span>ZOS Store</span></a>
+    <div class="account-chip"><div class="avatar" id="dashboard-avatar">Z</div><div><strong id="dashboard-name">ZombieOS user</strong><span>ZDP member</span></div></div>
+    <nav aria-label="Dashboard navigation">
+      <p>DEVELOPER</p><a href="index.html"><span>⌂</span> Overview</a><a href="projects.html"><span>□</span> Projects</a><a href="organizations.html"><span>◇</span> Organizations</a><a href="verify.html"><span>✓</span> Verify</a>
+      <p>ACCOUNT</p><a class="active" href="profile.html"><span>○</span> Profile</a><a href="settings.html"><span>⚙</span> Settings</a>
+    </nav>
+    <a class="sidebar-store-link" href="../index.html">← Back to Store</a>
+  </aside>
+
+  <main class="dashboard-main zdp-editor">
+    <header class="dashboard-header zdp-header"><div><p class="section-label">ZDP IDENTITY</p><h1>Your developer profile.</h1></div><a class="profile-preview-link" id="public-profile-link" href="../profiles.html">View public profile ↗</a></header>
+
+    <form id="zdp-profile-form">
+      <section class="zdp-visual-card">
+        <div class="zdp-banner"><img id="banner-preview" alt=""><label for="banner-input">Change banner</label><input id="banner-input" type="file" accept="image/*" hidden></div>
+        <div class="zdp-avatar-row"><div class="zdp-avatar"><img id="avatar-preview" alt=""></div><div><label class="upload-avatar" for="avatar-input">Change profile picture</label><input id="avatar-input" type="file" accept="image/*" hidden><p>PNG, JPG, or WebP. Images are optimized for the Store.</p></div></div>
+      </section>
+
+      <div class="zdp-form-grid">
+        <section class="zdp-form-card">
+          <p class="section-label">PROFILE DETAILS</p>
+          <label for="zdp-name">ZDP profile name</label><input id="zdp-name" required maxlength="40"><small>This controls your public URL: profiles.html?v=<b id="profile-slug">name</b></small>
+          <label for="zdp-bio">Bio</label><textarea id="zdp-bio" maxlength="500" placeholder="Tell people what you build..."></textarea>
+        </section>
+        <section class="zdp-form-card">
+          <p class="section-label">SOCIAL LINKS</p>
+          <label for="social-github">GitHub</label><input id="social-github" type="url" placeholder="https://github.com/...">
+          <label for="social-youtube">YouTube</label><input id="social-youtube" type="url" placeholder="https://youtube.com/@...">
+          <label for="social-discord">Discord username</label><input id="social-discord" placeholder="username">
+        </section>
+      </div>
+
+      <div class="zdp-save-bar"><p id="save-status" role="status"></p><button class="primary-button" type="submit">Save ZDP profile <span>→</span></button></div>
+    </form>
+  </main>
+
+  <div class="membership-overlay" id="membership-overlay" hidden><section class="membership-popup" role="dialog" aria-modal="true"><div class="membership-icon">DEV</div><p class="section-label">DEVELOPER ACCESS REQUIRED</p><h2>You’re not a ZDP member.</h2><p>Your account needs an active ZombieOS Developer Program membership before you can create a ZDP profile.</p><div class="membership-actions"><a class="back-button" href="../index.html">Back to Store</a><a class="primary-button" href="../dev.html">Sign up for ZDP <span>→</span></a></div></section></div>
+</body>
+</html>

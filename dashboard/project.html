@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit draft — ZOS Store</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/account.css">
+  <link rel="stylesheet" href="../css/project-edit.css">
+  <script type="module" src="../js/project-edit.js?v=4"></script>
+</head>
+<body class="dashboard-body dashboard-pending">
+  <aside class="dashboard-sidebar">
+    <a class="brand dashboard-brand" href="../index.html"><img src="https://www.zsharp.zombieos.com/zsharp.png" alt=""><span>ZOS Store</span></a>
+    <div class="account-chip"><div class="avatar" id="dashboard-avatar">Z</div><div><strong id="dashboard-name">ZombieOS user</strong><span>ZDP member</span></div></div>
+    <nav aria-label="Dashboard navigation">
+      <p>DEVELOPER</p><a href="index.html"><span>⌂</span> Overview</a><a class="active" href="projects.html"><span>□</span> Projects</a><a href="organizations.html"><span>◇</span> Organizations</a><a href="verify.html"><span>✓</span> Verify</a>
+      <p>ACCOUNT</p><a href="profile.html"><span>○</span> Profile</a><a href="settings.html"><span>⚙</span> Settings</a>
+    </nav>
+    <a class="sidebar-store-link" href="../index.html">← Back to Store</a>
+  </aside>
+
+  <main class="dashboard-main project-editor-main">
+    <a class="project-back" href="projects.html">← All projects</a>
+    <header class="dashboard-header"><div><p class="section-label">STORE PROJECT · <span id="project-state">DRAFT</span></p><h1 id="editor-heading">Edit draft.</h1><p class="editor-intro">Shape how your app or game appears in the Store.</p></div></header>
+    <p class="editor-alert" id="editor-error" role="alert" hidden></p>
+    <div class="denial-alert" id="denial-alert" hidden><strong>Version denied</strong><p id="denial-reason"></p></div>
+    <form id="project-edit-form" hidden>
+      <section class="editor-panel"><div class="panel-heading"><span>01</span><div><h2>Identity</h2><p>These details identify your project across the Store.</p></div></div>
+        <div class="editor-fields two-columns">
+          <label>Project display name<input id="display-name" maxlength="60" required></label>
+          <label>Project ID<span class="project-id-input"><span>zos.</span><input id="project-slug" maxlength="70" pattern="[a-z0-9-]+" required></span><small>Changing this changes the project’s URL. Available while it is a draft.</small></label>
+          <label>Project type<select id="project-type"><option value="app">Application (.zapp)</option><option value="game">Game (.zgame)</option></select></label>
+          <label>Publisher<select id="project-publisher"><option value="profile">Your ZDP profile</option></select></label>
+          <label>Current version<input id="project-version" maxlength="30" required></label>
+          <label>Price<select id="project-price" disabled><option value="0">Free — paid projects coming later</option></select><small>All apps and games are free until payments are ready.</small></label>
+        </div>
+      </section>
+
+      <section class="editor-panel"><div class="panel-heading"><span>02</span><div><h2>Artwork</h2><p>Add an icon and a wide banner for your Store page.</p></div></div>
+        <div class="artwork-grid">
+          <div class="artwork-field"><label for="project-icon-input">Project icon</label><div class="icon-preview"><img id="icon-preview" src="https://www.zsharp.zombieos.com/zsharp.png" alt="Project icon preview"></div><input id="project-icon-input" type="file" accept="image/png,image/jpeg,image/webp"><button class="remove-art" id="remove-icon" type="button">Remove icon</button><small>Square image recommended. The Store reduces large images before saving.</small></div>
+          <div class="artwork-field"><label for="project-banner-input">Project banner</label><div class="banner-preview"><img id="banner-preview" alt="Project banner preview" hidden><span id="banner-placeholder">No banner yet</span></div><input id="project-banner-input" type="file" accept="image/png,image/jpeg,image/webp"><button class="remove-art" id="remove-banner" type="button">Remove banner</button><small>Wide image recommended.</small></div>
+        </div>
+        <div class="screenshots-field"><div><h3>Screenshots</h3><p>Add up to five images to show your project in the Store.</p></div><div class="screenshot-list" id="screenshot-list"></div><label class="screenshot-picker">Add screenshots<input id="screenshot-input" type="file" accept="image/png,image/jpeg,image/webp" multiple></label></div>
+      </section>
+
+      <section class="editor-panel"><div class="panel-heading"><span>03</span><div><h2>Details</h2><p>Explain your project and choose where it runs.</p></div></div>
+        <div class="editor-fields">
+          <label>Short description<textarea id="project-description" maxlength="240" rows="4" placeholder="What does your project do?"></textarea><small><span id="description-count">0</span>/240 characters</small></label>
+          <fieldset class="device-options"><legend>Supported devices</legend><label><input type="checkbox" name="platform" value="Windows">Windows</label><label><input type="checkbox" name="platform" value="macOS">macOS</label><label><input type="checkbox" name="platform" value="Linux">Linux</label><label><input type="checkbox" name="platform" value="ZombieOS">ZombieOS</label><label><input type="checkbox" name="platform" value="Android">Android</label><label><input type="checkbox" name="platform" value="Meta Quest">Meta Quest</label><label><input type="checkbox" name="platform" value="OpenXR">OpenXR</label></fieldset>
+          <label>Contributors<input id="project-contributors" maxlength="300" placeholder="ZDP profile names, separated by commas"></label>
+        </div>
+      </section>
+      <div class="editor-actions"><p id="save-status" role="status"></p><button class="primary-button" id="save-project" type="submit">Save draft <span>→</span></button></div>
+    </form>
+    <section class="release-panel" id="release-panel" hidden><div class="release-heading"><div><p class="section-label">VERSIONS</p><h2>Release history</h2><p>Upload an unbytecoded source package for human review.</p></div><button class="primary-button" id="new-version-button" type="button">Submit new version <span>+</span></button></div><p class="release-status" id="release-status" role="status"></p><div class="release-list" id="release-list"></div><p class="release-empty" id="release-empty">No versions submitted yet.</p></section>
+  </main>
+  <div class="version-modal" id="version-modal" hidden><section class="version-dialog" role="dialog" aria-modal="true" aria-labelledby="version-dialog-title"><button class="version-close" id="version-close" type="button" aria-label="Close">×</button><p class="section-label">SOURCE SUBMISSION</p><h2 id="version-dialog-title">Submit a new version</h2><p>Upload one readable, unbytecoded <span id="package-extension">.zapp</span> package. Staff will review the source before it is released.</p><form id="version-form"><label>Package file<input id="version-file" type="file" required></label><label>Version number<input id="version-number" maxlength="30" required placeholder="1.0.0"></label><label>Display name for this version<input id="version-display-name" maxlength="80" required placeholder="First release"></label><label>Z# version used<input id="zsharp-version" maxlength="30" required placeholder="1.1.1.0"></label><label>Changelog (Markdown)<textarea id="version-changelog" maxlength="20000" rows="8" required placeholder="## What's new&#10;- Added..."></textarea></label><label class="vr-check"><input id="version-vr" type="checkbox">This version supports VR / OpenXR</label><p class="version-help">VR submissions receive a second review before publication.</p><p class="dialog-status" id="version-status" role="status"></p><div class="dialog-actions"><button class="back-button" id="version-cancel" type="button">Cancel</button><button class="primary-button" id="submit-version" type="submit">Submit for review <span>→</span></button></div></form></section></div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="View a project on the ZOS Store.">
+  <title>Project — ZOS Store</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/project-page.css">
+  <link rel="stylesheet" href="css/report.css">
+  <script type="module" src="js/project-page.js?v=6"></script>
+  <script type="module" src="js/session.js"></script>
+</head>
+<body>
+  <header class="site-header shell">
+    <a class="brand" href="index.html"><img src="https://www.zsharp.zombieos.com/zsharp.png" alt=""><span>ZOS Store</span></a>
+    <nav aria-label="Main navigation"><a href="index.html">Home</a><a href="apps.html">Apps</a><a href="games.html">Games</a><a href="index.html#developers">Developers</a></nav>
+    <a class="nav-cta" data-account-control href="login.html">Sign in <span>→</span></a>
+  </header>
+
+  <main class="project-page shell">
+    <section class="project-loading" id="project-loading"><span></span><p>Loading project...</p></section>
+    <section class="project-error" id="project-error" hidden><p class="section-label">PROJECT NOT FOUND</p><h1>That project isn’t here.</h1><p>Check the project ID in the address or return to the Store.</p><a class="primary-button" href="index.html">Back to Store <span>→</span></a></section>
+    <article id="project-content" hidden>
+      <p class="moderation-notice" id="project-moderation-notice" hidden>This project is suspended. It is unlisted and cannot be downloaded.</p>
+      <div class="project-banner" id="project-banner" hidden><img id="project-banner-image" alt=""></div>
+      <div class="project-hero">
+        <div class="project-icon"><img id="project-icon" src="https://www.zsharp.zombieos.com/zsharp.png" alt=""></div>
+        <div class="project-heading"><div class="project-labels"><span id="project-type">.zapp</span><span id="project-state"></span></div><h1 id="project-name"></h1><p id="project-description"></p><div class="creator-line">By <a id="project-creator"></a><span>•</span><span id="project-id"></span></div></div>
+        <div class="project-action"><button class="primary-button" id="download-button" type="button">Download <span>↓</span></button><small id="download-count">0 downloads</small><button class="report-button" id="report-project" type="button">Report project</button></div>
+      </div>
+
+      <section class="project-facts" aria-label="Project details">
+        <div><span>Rating</span><strong id="project-rating">No reviews</strong></div><div><span>Version</span><strong id="project-version">—</strong></div><div><span>Released</span><strong id="release-date">Not released</strong></div><div><span>Updated</span><strong id="update-date">—</strong></div>
+      </section>
+
+      <section class="project-screenshots" id="project-screenshots" hidden><p class="section-label">SCREENSHOTS</p><div id="screenshot-gallery"></div></section>
+
+      <div class="project-columns">
+        <section><p class="section-label">SUPPORTED PLATFORMS</p><div class="platform-list" id="platform-list"></div><p class="section-label contributors-label">CONTRIBUTORS</p><div class="contributor-list" id="contributor-list"></div></section>
+        <section class="reviews-panel"><div class="reviews-heading"><div><p class="section-label">COMMUNITY REVIEWS</p><h2>Reviews</h2></div><strong id="review-summary">—</strong></div><div id="reviews-list"></div><p class="reviews-empty" id="reviews-empty">No reviews yet.</p><div class="review-compose"><h3>Your review</h3><p id="review-signin">Sign in to rate and review this project. <a id="review-signin-link" href="login.html">Sign in →</a></p><form id="project-review-form" hidden><fieldset class="star-picker"><legend>Rating</legend><div class="star-options"><label><input type="radio" name="stars" value="1" required><span aria-hidden="true">★</span><span class="sr-only">1 star</span></label><label><input type="radio" name="stars" value="2"><span aria-hidden="true">★</span><span class="sr-only">2 stars</span></label><label><input type="radio" name="stars" value="3"><span aria-hidden="true">★</span><span class="sr-only">3 stars</span></label><label><input type="radio" name="stars" value="4"><span aria-hidden="true">★</span><span class="sr-only">4 stars</span></label><label><input type="radio" name="stars" value="5"><span aria-hidden="true">★</span><span class="sr-only">5 stars</span></label></div></fieldset><label for="review-body">Review (optional)</label><textarea id="review-body" maxlength="2000" rows="4" placeholder="What did you think?"></textarea><p id="review-form-status" role="status"></p><div class="review-form-actions"><button class="primary-button" id="save-project-review" type="submit">Post review</button><button class="report-button" id="delete-project-review" type="button" hidden>Delete my review</button></div></form></div></section>
+      </div>
+    </article>
+  </main>
+
+  <footer class="footer shell"><div class="footer-identity"><strong>ZOS Store</strong><span>Built by ZombieOS</span></div><p class="license">Apache License 2.0</p></footer>
+</body>
+</html>

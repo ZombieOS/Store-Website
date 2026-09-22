@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects — ZOS Store</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/account.css">
+  <link rel="stylesheet" href="../css/projects.css">
+  <script type="module" src="../js/projects.js?v=5"></script>
+</head>
+<body class="dashboard-body dashboard-pending">
+  <aside class="dashboard-sidebar">
+    <a class="brand dashboard-brand" href="../index.html"><img src="https://www.zsharp.zombieos.com/zsharp.png" alt=""><span>ZOS Store</span></a>
+    <div class="account-chip"><div class="avatar" id="dashboard-avatar">Z</div><div><strong id="dashboard-name">ZombieOS user</strong><span>ZDP member</span></div></div>
+    <nav aria-label="Dashboard navigation">
+      <p>DEVELOPER</p><a href="index.html"><span>⌂</span> Overview</a><a class="active" href="projects.html"><span>□</span> Projects</a><a href="organizations.html"><span>◇</span> Organizations</a><a href="verify.html"><span>✓</span> Verify</a>
+      <p>ACCOUNT</p><a href="profile.html"><span>○</span> Profile</a><a href="settings.html"><span>⚙</span> Settings</a>
+    </nav>
+    <a class="sidebar-store-link" href="../index.html">← Back to Store</a>
+  </aside>
+
+  <main class="dashboard-main projects-main">
+    <header class="dashboard-header"><div><p class="section-label">YOUR WORK</p><h1>Projects.</h1></div><button class="primary-button" id="new-project-button" type="button">New project <span>+</span></button></header>
+
+    <section class="project-summary"><div><strong id="project-count">0</strong><span>Total projects</span></div><div><strong id="app-count">0</strong><span>Apps</span></div><div><strong id="game-count">0</strong><span>Games</span></div></section>
+
+    <section class="projects-list-section">
+      <div class="projects-toolbar"><h2>All projects</h2><label><span>Search</span><input id="project-search" type="search" placeholder="Find a project..."></label></div>
+      <div class="project-grid" id="project-grid"></div>
+      <div class="dashboard-empty" id="projects-empty"><div class="empty-project-icon">+</div><h3>No projects yet.</h3><p>Create your first app or game project. It will stay a draft until you submit it for review.</p><button class="primary-button" id="empty-create-button" type="button">Create project <span>→</span></button></div>
+    </section>
+  </main>
+
+  <div class="project-modal" id="project-modal" hidden>
+    <section class="project-dialog" role="dialog" aria-modal="true" aria-labelledby="project-dialog-title">
+      <button class="dialog-close" id="dialog-close" type="button" aria-label="Close">×</button>
+      <p class="section-label">NEW STORE PROJECT</p><h2 id="project-dialog-title">What are you building?</h2><p class="dialog-copy">Create the Store record now. You can add files, images, versions, and review information later.</p>
+      <form id="project-form">
+        <label for="project-name">Project name</label><input id="project-name" maxlength="60" required placeholder="My Z# Project">
+        <label for="project-publisher">Publisher</label><select id="project-publisher"><option value="profile">Your ZDP profile</option></select>
+        <label for="project-id">Project ID</label><div class="project-id-field"><span>zos.</span><input id="project-id" maxlength="70" required placeholder="my-zsharp-project"></div><small>Lowercase letters, numbers, and hyphens only. You can change this while the project is a draft.</small>
+        <fieldset><legend>Project type</legend><label class="type-option"><input type="radio" name="project-type" value="app" checked><span><b>Application</b><small>Published as a .zapp</small></span></label><label class="type-option"><input type="radio" name="project-type" value="game"><span><b>Game</b><small>Published as a .zgame</small></span></label></fieldset>
+        <label for="project-version">Starting version</label><input id="project-version" maxlength="30" value="0.1.0" required placeholder="0.1.0">
+        <fieldset class="platform-options"><legend>Supported platforms</legend><label class="type-option"><input type="checkbox" name="platform" value="Windows" checked><span><b>Windows</b></span></label><label class="type-option"><input type="checkbox" name="platform" value="macOS" checked><span><b>macOS</b></span></label><label class="type-option"><input type="checkbox" name="platform" value="Linux" checked><span><b>Linux</b></span></label><label class="type-option"><input type="checkbox" name="platform" value="ZombieOS" checked><span><b>ZombieOS</b></span></label><label class="type-option"><input type="checkbox" name="platform" value="Android"><span><b>Android</b></span></label><label class="type-option"><input type="checkbox" name="platform" value="Meta Quest"><span><b>Meta Quest</b></span></label><label class="type-option"><input type="checkbox" name="platform" value="OpenXR"><span><b>OpenXR</b></span></label></fieldset>
+        <label for="project-contributors">Contributors</label><input id="project-contributors" maxlength="300" placeholder="ZDP profile names, separated by commas">
+        <label for="project-description">Short description</label><textarea id="project-description" maxlength="240" placeholder="What does this project do?"></textarea>
+        <p class="dialog-status" id="project-status" role="status"></p>
+        <div class="dialog-actions"><button class="back-button" id="dialog-cancel" type="button">Cancel</button><button class="primary-button" type="submit">Create draft <span>→</span></button></div>
+      </form>
+    </section>
+  </div>
+
+  <div class="membership-overlay" id="membership-overlay" hidden><section class="membership-popup" role="dialog" aria-modal="true"><div class="membership-icon">DEV</div><p class="section-label">DEVELOPER ACCESS REQUIRED</p><h2>You’re not a ZDP member.</h2><p>Your account needs an active ZombieOS Developer Program membership before you can create Store projects.</p><div class="membership-actions"><a class="back-button" href="../index.html">Back to Store</a><a class="primary-button" href="../dev.html">Sign up for ZDP <span>→</span></a></div></section></div>
+</body>
+</html>

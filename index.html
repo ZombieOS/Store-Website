@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Discover reviewed and verified apps and games for the ZVM.">
+  <title>ZOS Store — Apps built for Z#</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script type="module" src="js/session.js"></script>
+  <script type="module" src="js/home.js?v=2"></script>
+</head>
+<body>
+  <header class="site-header shell">
+    <a class="brand" href="index.html" aria-label="ZOS Store home"><img src="https://www.zsharp.zombieos.com/zsharp.png" alt=""><span>ZOS Store</span></a>
+    <nav aria-label="Main navigation"><a class="active" href="index.html">Home</a><a href="apps.html">Apps</a><a href="games.html">Games</a><a href="#developers">Developers</a></nav>
+    <a class="nav-cta" data-account-control href="login.html">Sign in <span aria-hidden="true">→</span></a>
+  </header>
+
+  <main>
+    <section class="hero shell">
+      <div class="hero-copy">
+        <div class="eyebrow"><span></span> VERIFIED FOR THE ZVM</div>
+        <h1>Find your next<br><em>favorite.</em></h1>
+        <p>Reviewed apps and games built with Z# and ready to run across your desktop devices.</p>
+        <div class="hero-actions"><a class="primary-button" href="#featured">Explore the Store <span>↓</span></a><a class="text-button" href="#developers">Publish your project <span>→</span></a></div>
+        <div class="platforms" aria-label="Supported platforms"><span>Windows</span><i></i><span>Linux</span><i></i><span>macOS</span></div>
+      </div>
+
+      <div class="store-canvas" aria-label="Verified ZOS Store package">
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <div class="node node-a"><b>.zapp</b><small>application</small></div>
+        <div class="node node-b"><b>.zgame</b><small>game</small></div>
+        <div class="node node-c"><b>SHA-256</b><small>exact file</small></div>
+        <article class="package-card">
+          <div class="package-bar"><span class="dot red"></span><span class="dot amber"></span><span class="dot green"></span><span class="filename">Store release</span></div>
+          <div class="package-content"><div class="package-icon"><img id="featured-icon" src="https://www.zsharp.zombieos.com/zsharp.png" alt=""></div><div><span class="package-label" id="featured-label">FEATURED APPLICATION</span><h2 id="featured-name">Your app belongs here.</h2><p id="featured-description">Readable source reviewed by the ZOS Store.</p><a id="featured-link" href="apps.html" hidden>View project →</a></div></div>
+          <div class="verified"><span></span> Verified for ZVM</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="catalog shell" id="featured">
+      <p class="section-label">DISCOVER SOMETHING NEW</p>
+      <div class="section-heading"><h2>Built by the community.<br><span>Checked before release.</span></h2><a href="apps.html">Browse everything →</a></div>
+      <div class="card-grid">
+        <article class="store-card" id="apps"><span class="card-number">01</span><div class="app-icon app">A</div><p class="card-type">APPLICATION · .ZAPP</p><h3>Featured applications</h3><p>Tools and experiences made to travel with you across Windows, Linux, and macOS.</p><a href="apps.html">Explore apps <span>→</span></a></article>
+        <article class="store-card" id="games"><span class="card-number">02</span><div class="app-icon game">G</div><p class="card-type">GAME · .ZGAME</p><h3>Featured games</h3><p>Games powered by the ZVM, reviewed from readable source before they reach you.</p><a href="games.html">Explore games <span>→</span></a></article>
+        <article class="store-card"><span class="card-number">03</span><div class="app-icon developer">Z#</div><p class="card-type">FOR DEVELOPERS</p><h3>Publish your project</h3><p>Join the free ZombieOS Developer Program and bring what you built to the Store.</p><a href="dev.html">Start publishing <span>→</span></a></article>
+      </div>
+    </section>
+
+    <section class="developer-section shell" id="developers">
+      <div><p class="section-label">ZOMBIEOS DEVELOPER PROGRAM</p><h2>Made something?<br><span>Let people find it.</span></h2></div>
+      <div class="developer-copy"><p>ZDP membership is free. Submit your readable source for human review, then publish your approved release on the Store.</p><a class="primary-button" href="dev.html">Join the ZDP <span>→</span></a></div>
+    </section>
+  </main>
+
+  <footer class="footer shell">
+    <div class="footer-identity"><strong>ZOS Store</strong><span>Built by ZombieOS</span></div>
+    <nav class="footer-links" aria-label="Official links"><span>LINKS</span><a href="#privacy">Privacy</a><a href="#terms">Terms</a><a href="https://www.zsharp.zombieos.com/">Z# <b>↗</b></a><a href="https://www.zombieos.com/">ZombieOS <b>↗</b></a></nav>
+    <p class="license">Apache License 2.0</p>
+  </footer>
+</body>
+</html>
