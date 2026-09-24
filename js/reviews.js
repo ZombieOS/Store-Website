@@ -85,7 +85,7 @@ modal.addEventListener("click", (event) => { if (event.target === modal) closeMo
 document.querySelector("#review-download").addEventListener("click", async () => {
   if (!active) return;
   dialogError.textContent = "";
-  try { await storeDownload("review-download", active.id); }
+  try { await storeDownload("review-download", active.id, active.fileName || "source-package.zapp"); }
   catch (error) { dialogError.textContent = error.message; }
 });
 document.querySelector("#review-deny").addEventListener("click", () => {

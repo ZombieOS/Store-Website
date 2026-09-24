@@ -1,5 +1,5 @@
 import { auth, db as accountDb } from "./firebase.js";
-import { storeApi, storeUpload } from "./store-api.js";
+import { storeApi, storeUpload, storeMultipartUpload } from "./store-api.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
 import { doc, getDoc } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
 
@@ -182,8 +182,9 @@ form.addEventListener("submit", async (event) => {
 const versionModal = document.querySelector("#version-modal");
 const versionForm = document.querySelector("#version-form");
 const versionStatus = document.querySelector("#version-status");
+let versionUploading = false;
 
-function closeVersionModal() { versionModal.hidden = true; }
+function closeVersionModal() { if (!versionUploading) versionModal.hidden = true; }
 document.querySelector("#version-close").addEventListener("click", closeVersionModal);
 document.querySelector("#version-cancel").addEventListener("click", closeVersionModal);
 versionModal.addEventListener("click", (event) => { if (event.target === versionModal) closeVersionModal(); });
@@ -238,25 +239,48 @@ versionForm.addEventListener("submit", async (event) => {
   const file = document.querySelector("#version-file").files?.[0];
   const extension = project.type === "game" ? ".zgame" : ".zapp";
   if (!file || !file.name.toLowerCase().endsWith(extension)) { versionStatus.textContent = `Select one ${extension} file.`; return; }
-  if (file.size > 40 * 1024 * 1024) { versionStatus.textContent = "Choose a package under 40 MB."; return; }
+  if (file.size > 1024 * 1024 * 1024) { versionStatus.textContent = "Choose a package no larger than 1 GB."; return; }
   const header = new TextDecoder().decode(await file.slice(0, 6).arrayBuffer());
   if (header === "ZSPKG1") { versionStatus.textContent = "This package is bytecoded. Upload an unbytecoded source package."; return; }
   const button = document.querySelector("#submit-version");
-  button.disabled = true; versionStatus.textContent = "Uploading source package...";
+  const largeUpload = file.size > 100 * 1024 * 1024;
+  versionUploading = true;
+  button.disabled = true;
+  document.querySelector("#version-cancel").disabled = true;
+  document.querySelector("#version-close").disabled = true;
+  button.classList.toggle("uploading", largeUpload);
+  versionStatus.classList.toggle("uploading", largeUpload);
+  versionStatus.setAttribute("aria-busy", "true");
+  versionStatus.textContent = "Uploading source package...";
   try {
-    await storeUpload("submit-version", {
+    const fields = {
       projectId: project.id,
       version: document.querySelector("#version-number").value.trim(),
       displayName: document.querySelector("#version-display-name").value.trim(),
       zsharpVersion: document.querySelector("#zsharp-version").value.trim(),
       changelog: document.querySelector("#version-changelog").value.trim(),
       vrSupported: document.querySelector("#version-vr").checked
-    }, file);
+    };
+    if (file.size <= 40 * 1024 * 1024) await storeUpload("submit-version", fields, file);
+    else await storeMultipartUpload(fields, file, ({ stage, completed, total }) => {
+      versionStatus.textContent = stage === "assembling"
+        ? "Combining and checking the package in Cloudflare. It will appear to staff when this finishes..."
+        : `Uploading part ${completed} of ${total}...`;
+    });
+    versionUploading = false;
     closeVersionModal();
     document.querySelector("#release-status").textContent = "Version submitted for review.";
     await loadVersions();
   } catch (error) { versionStatus.textContent = error.message || "The version could not be submitted."; }
-  finally { button.disabled = false; }
+  finally {
+    versionUploading = false;
+    button.disabled = false;
+    document.querySelector("#version-cancel").disabled = false;
+    document.querySelector("#version-close").disabled = false;
+    button.classList.remove("uploading");
+    versionStatus.classList.remove("uploading");
+    versionStatus.removeAttribute("aria-busy");
+  }
 });
 
 onAuthStateChanged(auth, async (user) => {
