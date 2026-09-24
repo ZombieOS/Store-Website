@@ -1,5 +1,5 @@
 import { auth, db as accountDb } from "./firebase.js";
-import { storeApi, storeDownload } from "./store-api.js";
+import { storeApi, storeDownload } from "./store-api.js?v=2";
 import { renderMarkdown } from "./markdown.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
 import { doc, getDoc } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
