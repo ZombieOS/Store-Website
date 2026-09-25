@@ -2,6 +2,7 @@ import { zsharpDb } from "./zsharp-firebase.js";
 import { setupReportButton } from "./report-form.js";
 import { loadPublicProfile } from "./catalog.js";
 import { db as accountDb } from "./firebase.js";
+import { setupFollow } from "./follow.js";
 import { collection, doc, getDoc, getDocs, limit, query, where } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
 
 const requestedName = new URLSearchParams(window.location.search).get("v")?.trim() || "";
@@ -176,6 +177,20 @@ function renderProfile(profile) {
   verification.hidden = moderated || data.verified !== true;
   verification.title = data.verificationMethod === "dns" ? `Verified domain: ${data.verifiedDomain}` : "Verified by 500,000 Store downloads";
   document.querySelector("#profile-handle").textContent = handle;
+  document.querySelector("#profile-downloads").textContent = Number(data.totalDownloads || 0).toLocaleString();
+  const memberCount = document.querySelector("#profile-member-count");
+  memberCount.hidden = !isOrganization;
+  memberCount.textContent = isOrganization ? `${Number(data.memberCount || 1).toLocaleString()} members` : "";
+  const members = document.querySelector("#profile-members");
+  members.hidden = !isOrganization;
+  if (isOrganization) document.querySelector("#profile-member-list").replaceChildren(...(data.members || []).map((member) => {
+    const link = document.createElement("a"); link.className = "profile-member"; link.href = `profiles.html?v=${encodeURIComponent(member.profileId)}`;
+    const picture = document.createElement("img"); picture.src = member.avatar || "https://www.zsharp.zombieos.com/zsharp.png"; picture.alt = "";
+    const name = document.createElement("span"); name.textContent = member.name;
+    const role = document.createElement("b"); role.textContent = member.role || "Member";
+    link.append(picture, name, role); return link;
+  }));
+  setupFollow(document.querySelector("#profile-follow"), { type: isOrganization ? "organization" : "developer", id: activeProfileId });
   document.querySelector("#profile-avatar").src = avatar;
   const bannerImage = document.querySelector("#profile-banner");
   if (banner) bannerImage.src = banner;

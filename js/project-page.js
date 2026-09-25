@@ -2,6 +2,7 @@ import { loadPublicProject } from "./catalog.js";
 import { setupReportButton } from "./report-form.js";
 import { auth } from "./firebase.js";
 import { storeApi } from "./store-api.js";
+import { setupFollow } from "./follow.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
 
 const requestedId = new URLSearchParams(location.search).get("v")?.trim() || "";
@@ -58,6 +59,7 @@ function renderProject(project, reviews) {
   const creator = document.querySelector("#project-creator");
   creator.textContent = project.creator || "Unknown creator";
   creator.href = profileLink(project.creator || "");
+  document.querySelector("#creator-verified").hidden = project.publisherVerified !== true;
   document.querySelector("#platform-list").replaceChildren(...(project.supportedPlatforms || []).map((name) => { const item = document.createElement("span"); item.textContent = name; return item; }));
   const people = [project.creator, ...(Array.isArray(project.contributors) ? project.contributors : [])].filter(Boolean);
   document.querySelector("#contributor-list").replaceChildren(...people.map((name) => { const link = document.createElement("a"); link.href = profileLink(name); link.textContent = name; return link; }));
@@ -139,6 +141,7 @@ async function init() {
     currentProject = project;
     document.querySelector("#review-signin-link").href = `login.html?next=${encodeURIComponent(`projects.html?v=${requestedId}`)}`;
     renderProject(project, project.reviews || []);
+    setupFollow(document.querySelector("#project-follow"), { type: "project", id: project.id });
     syncMyReview(auth.currentUser);
     loading.hidden = true; content.hidden = false;
   } catch (error) {

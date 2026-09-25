@@ -168,7 +168,7 @@ onAuthStateChanged(auth, async (user) => {
     }
     setIdentity(user, profile);
     creatorName = state.profile?.username || state.member.profileId;
-    ownedOrganizations = await storeApi("organizations");
+    ownedOrganizations = (await storeApi("organizations")).filter((item) => item.ownerId === user.uid || item.memberRoles?.some((role) => ["publisher", "manager"].includes(role)));
     const publisherSelect = document.querySelector("#project-publisher");
     publisherSelect.options[0].textContent = creatorName;
     ownedOrganizations.forEach((organization) => publisherSelect.add(new Option(organization.name, `organization:${organization.id}`)));

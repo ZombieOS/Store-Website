@@ -293,7 +293,7 @@ onAuthStateChanged(auth, async (user) => {
     const organizations = await storeApi("organizations");
     const publisher = document.querySelector("#project-publisher");
     publisher.options[0].textContent = state.profile?.username || "Your ZDP profile";
-    for (const org of organizations) publisher.add(new Option(org.name, `organization:${org.id}`));
+    for (const org of organizations.filter((item) => item.ownerId === user.uid || item.memberRoles?.some((role) => ["publisher", "manager"].includes(role)))) publisher.add(new Option(org.name, `organization:${org.id}`));
     const value = await storeApi("project-detail", { id: requestedId });
     populate(value);
     await loadVersions();

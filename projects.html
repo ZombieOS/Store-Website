@@ -6,10 +6,10 @@
   <meta name="description" content="View a project on the ZOS Store.">
   <title>Project — ZOS Store</title>
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/project-page.css">
+  <link rel="stylesheet" href="css/project-page.css?v=2">
   <link rel="stylesheet" href="css/report.css">
-  <script type="module" src="js/project-page.js?v=6"></script>
-  <script type="module" src="js/session.js"></script>
+  <script type="module" src="js/project-page.js?v=7"></script>
+  <script type="module" src="js/session.js?v=2"></script>
 </head>
 <body>
   <header class="site-header shell">
@@ -26,8 +26,8 @@
       <div class="project-banner" id="project-banner" hidden><img id="project-banner-image" alt=""></div>
       <div class="project-hero">
         <div class="project-icon"><img id="project-icon" src="https://www.zsharp.zombieos.com/zsharp.png" alt=""></div>
-        <div class="project-heading"><div class="project-labels"><span id="project-type">.zapp</span><span id="project-state"></span></div><h1 id="project-name"></h1><p id="project-description"></p><div class="creator-line">By <a id="project-creator"></a><span>•</span><span id="project-id"></span></div></div>
-        <div class="project-action"><button class="primary-button" id="download-button" type="button">Download <span>↓</span></button><small id="download-count">0 downloads</small><button class="report-button" id="report-project" type="button">Report project</button></div>
+        <div class="project-heading"><div class="project-labels"><span id="project-type">.zapp</span><span id="project-state"></span></div><h1 id="project-name"></h1><p id="project-description"></p><div class="creator-line">By <a id="project-creator"></a><span class="creator-verified" id="creator-verified" title="Verified Store publisher" hidden>✓</span><span>•</span><span id="project-id"></span></div></div>
+        <div class="project-action"><button class="primary-button" id="download-button" type="button">Download <span>↓</span></button><strong id="download-count">0 downloads</strong><button class="follow-button" id="project-follow" type="button">Follow project</button><button class="report-button" id="report-project" type="button">Report project</button></div>
       </div>
 
       <section class="project-facts" aria-label="Project details">

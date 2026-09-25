@@ -1,6 +1,7 @@
 import { auth, db as accountDb } from "./firebase.js";
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
 import { doc, getDoc } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
+import { storeApi } from "./store-api.js";
 
 const accountControl = document.querySelector("[data-account-control]");
 
@@ -61,6 +62,9 @@ function showSignedIn(user) {
   const settings = document.createElement("a");
   settings.href = "dashboard/settings.html";
   settings.textContent = "Settings";
+  const notifications = document.createElement("a");
+  notifications.href = "notifications.html";
+  notifications.textContent = "Notifications";
   const logout = document.createElement("button");
   logout.type = "button";
   logout.textContent = "Log out";
@@ -69,7 +73,7 @@ function showSignedIn(user) {
     window.location.href = "index.html";
   });
 
-  menu.append(header, dashboard, settings, logout);
+  menu.append(header, dashboard, notifications, settings, logout);
   wrapper.append(button, menu);
   accountControl.replaceWith(wrapper);
 
@@ -84,6 +88,24 @@ function showSignedIn(user) {
       button.setAttribute("aria-expanded", "false");
     }
   });
+}
+
+async function checkNotifications(user) {
+  try {
+    const feed = await storeApi("notifications");
+    const link = document.querySelector('.account-menu a[href="notifications.html"]');
+    if (link) link.textContent = feed.unread ? `Notifications (${feed.unread})` : "Notifications";
+    const storageKey = `zos-store-notified-${user.uid}`;
+    const previous = Number(localStorage.getItem(storageKey) || 0);
+    if (!previous) { localStorage.setItem(storageKey, String(Date.now())); return; }
+    const fresh = feed.notifications.filter((item) => item.at > previous);
+    if (fresh.length && "Notification" in window && Notification.permission === "granted") {
+      const latest = fresh[0];
+      const notice = new Notification("ZOS Store", { body: latest.title, icon: "https://www.zsharp.zombieos.com/zsharp.png" });
+      notice.onclick = () => { window.focus(); location.href = latest.url; };
+    }
+    if (fresh.length) localStorage.setItem(storageKey, String(Math.max(...fresh.map((item) => item.at))));
+  } catch (error) { console.warn("Store notifications unavailable:", error); }
 }
 
 async function showStaffNavigation(user) {
@@ -101,6 +123,6 @@ async function showStaffNavigation(user) {
 }
 
 onAuthStateChanged(auth, (user) => {
-  if (user) { showSignedIn(user); showStaffNavigation(user); }
+  if (user) { showSignedIn(user); showStaffNavigation(user); checkNotifications(user); setInterval(() => { if (auth.currentUser?.uid === user.uid) checkNotifications(user); }, 60_000); }
   else showSignedOut();
 });

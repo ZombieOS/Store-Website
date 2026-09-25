@@ -52,7 +52,7 @@ onAuthStateChanged(auth, async (user) => {
     document.querySelector("#dashboard-name").textContent = name;
     document.querySelector("#dashboard-avatar").textContent = name.charAt(0).toUpperCase();
     targetSelect.add(new Option(`${name} (developer)`, `developer:${state.profile?.id || state.member.profileId}`));
-    for (const organization of organizations) targetSelect.add(new Option(`${organization.name} (organization)`, `organization:${organization.id}`));
+    for (const organization of organizations.filter((item) => item.ownerId === user.uid || item.memberRoles?.includes("verification"))) targetSelect.add(new Option(`${organization.name} (organization)`, `organization:${organization.id}`));
     document.body.classList.remove("dashboard-pending");
     await refreshStatus();
   } catch (error) { document.body.classList.remove("dashboard-pending"); progress.textContent = error.message || "Verification could not be loaded."; }

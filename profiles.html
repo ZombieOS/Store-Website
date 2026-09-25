@@ -6,10 +6,10 @@
   <meta name="description" content="View a ZOS Store profile.">
   <title>Profile — ZOS Store</title>
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/profiles.css">
+  <link rel="stylesheet" href="css/profiles.css?v=2">
   <link rel="stylesheet" href="css/report.css">
-  <script type="module" src="js/session.js"></script>
-  <script type="module" src="js/profiles.js?v=4"></script>
+  <script type="module" src="js/session.js?v=2"></script>
+  <script type="module" src="js/profiles.js?v=5"></script>
 </head>
 <body>
   <header class="site-header shell">
@@ -32,7 +32,7 @@
         <header class="profile-identity">
           <div class="profile-avatar"><img id="profile-avatar" alt=""></div>
           <div class="profile-names"><div class="profile-type" id="profile-type">DEVELOPER</div><div class="profile-name-line"><h1 id="profile-name"></h1><span class="profile-verification" id="profile-verification" title="Verified Store profile" aria-label="Verified Store profile" hidden>✓</span></div><p id="profile-handle"></p></div>
-          <a class="profile-action" id="profile-action" href="#projects">View projects <span>→</span></a><button class="report-button" id="report-profile" type="button">Report profile</button>
+          <div class="profile-actions"><div class="profile-stats"><strong id="profile-downloads">0</strong><span>total downloads</span><span id="profile-member-count" hidden></span></div><button class="follow-button" id="profile-follow" type="button">Follow</button><a class="profile-action" id="profile-action" href="#projects">View projects <span>→</span></a><button class="report-button" id="report-profile" type="button">Report profile</button></div>
         </header>
 
         <div class="profile-grid">
@@ -40,6 +40,8 @@
           <section class="profile-card" id="badges-card"><p class="section-label">BADGES</p><div class="profile-badges" id="profile-badges"></div></section>
           <section class="profile-card profile-socials-card"><p class="section-label" id="links-label">SOCIALS</p><div class="profile-socials" id="profile-socials"></div></section>
         </div>
+
+        <section class="profile-members" id="profile-members" hidden><p class="section-label">TEAM</p><h2>Members</h2><div id="profile-member-list"></div></section>
 
         <section class="profile-projects" id="projects"><div><p class="section-label">STORE RELEASES</p><h2>Published projects</h2></div><div class="profile-project-list" id="profile-project-list"><div class="profile-projects-empty">Published apps and games from this profile will appear here.</div></div></section>
       </div>
