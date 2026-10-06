@@ -3,6 +3,7 @@ import { setupReportButton } from "./report-form.js";
 import { loadPublicProfile } from "./catalog.js";
 import { db as accountDb } from "./firebase.js";
 import { setupFollow } from "./follow.js";
+import { projectExtension } from "./project-types.js";
 import { collection, doc, getDoc, getDocs, limit, query, where } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
 
 const requestedName = new URLSearchParams(window.location.search).get("v")?.trim() || "";
@@ -140,7 +141,7 @@ async function renderProjects(name, providedProjects) {
       const link = document.createElement("a"); link.className = "profile-project-item"; link.href = `projects.html?v=${encodeURIComponent(project.id || project.projectId)}`;
       const icon = document.createElement("img"); icon.src = project.icon || "https://www.zsharp.zombieos.com/zsharp.png"; icon.alt = "";
       const details = document.createElement("div"); const title = document.createElement("strong"); title.textContent = project.name;
-      const copy = document.createElement("span"); copy.textContent = project.description || (project.type === "game" ? ".zgame" : ".zapp"); details.append(title, copy);
+      const copy = document.createElement("span"); copy.textContent = project.description || projectExtension(project.type); details.append(title, copy);
       const arrow = document.createElement("b"); arrow.textContent = "→"; link.append(icon, details, arrow); return link;
     }));
     return;
@@ -151,7 +152,7 @@ async function renderProjects(name, providedProjects) {
     container.replaceChildren(...results.docs.map((result) => {
       const project = result.data(); const link = document.createElement("a"); link.className = "profile-project-item"; link.href = `projects.html?v=${encodeURIComponent(project.projectId)}`;
       const icon = document.createElement("img"); icon.src = project.icon || "https://www.zsharp.zombieos.com/zsharp.png"; icon.alt = "";
-      const details = document.createElement("div"); const title = document.createElement("strong"); title.textContent = project.name || project.projectDisplayName; const copy = document.createElement("span"); copy.textContent = project.description || (project.type === "game" ? ".zgame" : ".zapp"); details.append(title, copy);
+      const details = document.createElement("div"); const title = document.createElement("strong"); title.textContent = project.name || project.projectDisplayName; const copy = document.createElement("span"); copy.textContent = project.description || projectExtension(project.type); details.append(title, copy);
       const arrow = document.createElement("b"); arrow.textContent = "→"; link.append(icon, details, arrow); return link;
     }));
   } catch (error) { console.warn("Published projects could not be loaded:", error); }

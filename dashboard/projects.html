@@ -6,8 +6,8 @@
   <title>Projects — ZOS Store</title>
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/account.css">
-  <link rel="stylesheet" href="../css/projects.css">
-  <script type="module" src="../js/projects.js?v=6"></script>
+  <link rel="stylesheet" href="../css/projects.css?v=2">
+  <script type="module" src="../js/projects.js?v=7"></script>
 </head>
 <body class="dashboard-body dashboard-pending">
   <aside class="dashboard-sidebar">
@@ -23,12 +23,12 @@
   <main class="dashboard-main projects-main">
     <header class="dashboard-header"><div><p class="section-label">YOUR WORK</p><h1>Projects.</h1></div><button class="primary-button" id="new-project-button" type="button">New project <span>+</span></button></header>
 
-    <section class="project-summary"><div><strong id="project-count">0</strong><span>Total projects</span></div><div><strong id="app-count">0</strong><span>Apps</span></div><div><strong id="game-count">0</strong><span>Games</span></div></section>
+    <section class="project-summary"><div><strong id="project-count">0</strong><span>Total projects</span></div><div><strong id="app-count">0</strong><span>Apps</span></div><div><strong id="game-count">0</strong><span>Games</span></div><div><strong id="package-count">0</strong><span>Packages</span></div></section>
 
     <section class="projects-list-section">
       <div class="projects-toolbar"><h2>All projects</h2><label><span>Search</span><input id="project-search" type="search" placeholder="Find a project..."></label></div>
       <div class="project-grid" id="project-grid"></div>
-      <div class="dashboard-empty" id="projects-empty"><div class="empty-project-icon">+</div><h3>No projects yet.</h3><p>Create your first app or game project. It will stay a draft until you submit it for review.</p><button class="primary-button" id="empty-create-button" type="button">Create project <span>→</span></button></div>
+      <div class="dashboard-empty" id="projects-empty"><div class="empty-project-icon">+</div><h3>No projects yet.</h3><p>Create your first app, game, or package project. It will stay a draft until you submit it for review.</p><button class="primary-button" id="empty-create-button" type="button">Create project <span>→</span></button></div>
     </section>
   </main>
 
@@ -40,7 +40,7 @@
         <label for="project-name">Project name</label><input id="project-name" maxlength="60" required placeholder="My Z# Project">
         <label for="project-publisher">Publisher</label><select id="project-publisher"><option value="profile">Your ZDP profile</option></select>
         <label for="project-id">Project ID</label><div class="project-id-field"><span>zos.</span><input id="project-id" maxlength="70" required placeholder="my-zsharp-project"></div><small>Lowercase letters, numbers, and hyphens only. You can change this while the project is a draft.</small>
-        <fieldset><legend>Project type</legend><label class="type-option"><input type="radio" name="project-type" value="app" checked><span><b>Application</b><small>Published as a .zapp</small></span></label><label class="type-option"><input type="radio" name="project-type" value="game"><span><b>Game</b><small>Published as a .zgame</small></span></label></fieldset>
+        <fieldset><legend>Project type</legend><label class="type-option"><input type="radio" name="project-type" value="app" checked><span><b>Application</b><small>Published as a .zapp</small></span></label><label class="type-option"><input type="radio" name="project-type" value="game"><span><b>Game</b><small>Published as a .zgame</small></span></label><label class="type-option"><input type="radio" name="project-type" value="package"><span><b>Dependency package</b><small>Published as a .zpackage</small></span></label></fieldset>
         <label for="project-version">Starting version</label><input id="project-version" maxlength="30" value="0.1.0" required placeholder="0.1.0">
         <fieldset class="platform-options"><legend>Supported platforms</legend><label class="type-option"><input type="checkbox" name="platform" value="Windows" checked><span><b>Windows</b></span></label><label class="type-option"><input type="checkbox" name="platform" value="macOS" checked><span><b>macOS</b></span></label><label class="type-option"><input type="checkbox" name="platform" value="Linux" checked><span><b>Linux</b></span></label><label class="type-option"><input type="checkbox" name="platform" value="ZombieOS" checked><span><b>ZombieOS</b></span></label><label class="type-option"><input type="checkbox" name="platform" value="Android"><span><b>Android</b></span></label><label class="type-option"><input type="checkbox" name="platform" value="Meta Quest"><span><b>Meta Quest</b></span></label><label class="type-option"><input type="checkbox" name="platform" value="OpenXR"><span><b>OpenXR</b></span></label></fieldset>
         <label for="project-contributors">Contributors</label><input id="project-contributors" maxlength="300" placeholder="ZDP profile names, separated by commas">

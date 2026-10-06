@@ -1,5 +1,6 @@
 import { auth, db as accountDb } from "./firebase.js";
 import { storeApi, storeUpload, storeMultipartUpload } from "./store-api.js?v=2";
+import { projectExtension } from "./project-types.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
 import { doc, getDoc } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
 
@@ -191,7 +192,7 @@ versionModal.addEventListener("click", (event) => { if (event.target === version
 document.querySelector("#new-version-button").addEventListener("click", () => {
   if (!project) return;
   versionForm.reset(); versionStatus.textContent = "";
-  const extension = project.type === "game" ? ".zgame" : ".zapp";
+  const extension = projectExtension(project.type);
   document.querySelector("#version-file").accept = extension;
   document.querySelector("#package-extension").textContent = extension;
   document.querySelector("#version-number").value = project.status === "draft" ? (project.version || "0.1.0") : "";
@@ -230,6 +231,7 @@ function renderVersions(items) {
 
 async function loadVersions() {
   const versions = await storeApi("project-versions", { id: project.id });
+  document.querySelector("#project-type").disabled = versions.length > 0 || project.status !== "draft";
   renderVersions(versions);
 }
 
@@ -237,7 +239,7 @@ versionForm.addEventListener("submit", async (event) => {
   event.preventDefault();
   if (!project) return;
   const file = document.querySelector("#version-file").files?.[0];
-  const extension = project.type === "game" ? ".zgame" : ".zapp";
+  const extension = projectExtension(project.type);
   if (!file || !file.name.toLowerCase().endsWith(extension)) { versionStatus.textContent = `Select one ${extension} file.`; return; }
   if (file.size > 1024 * 1024 * 1024) { versionStatus.textContent = "Choose a package no larger than 1 GB."; return; }
   const header = new TextDecoder().decode(await file.slice(0, 6).arrayBuffer());

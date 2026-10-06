@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/account.css">
   <link rel="stylesheet" href="../css/project-edit.css?v=2">
-  <script type="module" src="../js/project-edit.js?v=6"></script>
+  <script type="module" src="../js/project-edit.js?v=7"></script>
 </head>
 <body class="dashboard-body dashboard-pending">
   <aside class="dashboard-sidebar">
@@ -30,7 +30,7 @@
         <div class="editor-fields two-columns">
           <label>Project display name<input id="display-name" maxlength="60" required></label>
           <label>Project ID<span class="project-id-input"><span>zos.</span><input id="project-slug" maxlength="70" pattern="[a-z0-9-]+" required></span><small>Changing this changes the project’s URL. Available while it is a draft.</small></label>
-          <label>Project type<select id="project-type"><option value="app">Application (.zapp)</option><option value="game">Game (.zgame)</option></select></label>
+          <label>Project type<select id="project-type"><option value="app">Application (.zapp)</option><option value="game">Game (.zgame)</option><option value="package">Dependency package (.zpackage)</option></select></label>
           <label>Publisher<select id="project-publisher"><option value="profile">Your ZDP profile</option></select></label>
           <label>Current version<input id="project-version" maxlength="30" required></label>
           <label>Price<select id="project-price" disabled><option value="0">Free — paid projects coming later</option></select><small>All apps and games are free until payments are ready.</small></label>

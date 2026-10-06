@@ -1,6 +1,7 @@
 import { auth, db as accountDb } from "./firebase.js";
 import { storeApi, storeDownload } from "./store-api.js?v=2";
 import { renderMarkdown } from "./markdown.js";
+import { projectExtension } from "./project-types.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
 import { doc, getDoc } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
 
@@ -21,7 +22,7 @@ function card(item) {
   tags.append(tag(item.priority || "VERSION", item.priority === "NEW" ? "tag-new" : ""), tag(item.status || "pending", item.status === "denied" ? "tag-denied" : ""));
   if (item.requiresVrReview) tags.append(tag("VR", "tag-vr"));
   const meta = document.createElement("div"); meta.className = "review-meta";
-  meta.textContent = `${item.type === "game" ? ".zgame" : ".zapp"} · ${item.creator || "Unknown publisher"} · ${new Date(item.submittedAt).toLocaleDateString()}`;
+  meta.textContent = `${projectExtension(item.type)} · ${item.creator || "Unknown publisher"} · ${new Date(item.submittedAt).toLocaleDateString()}`;
   content.append(title, summary, tags, meta);
   const open = document.createElement("button"); open.type = "button"; open.textContent = "Open submission →";
   open.addEventListener("click", () => openSubmission(item.id));

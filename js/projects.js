@@ -1,5 +1,6 @@
 import { auth, db as accountDb } from "./firebase.js";
 import { storeApi } from "./store-api.js";
+import { projectExtension } from "./project-types.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
 import { doc, getDoc } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
 
@@ -40,6 +41,7 @@ function updateCounts() {
   document.querySelector("#project-count").textContent = String(projects.length);
   document.querySelector("#app-count").textContent = String(projects.filter((project) => project.type === "app").length);
   document.querySelector("#game-count").textContent = String(projects.filter((project) => project.type === "game").length);
+  document.querySelector("#package-count").textContent = String(projects.filter((project) => project.type === "package").length);
 }
 
 function projectCard(project) {
@@ -49,7 +51,7 @@ function projectCard(project) {
   top.className = "project-card-top";
   const kind = document.createElement("span");
   kind.className = "project-kind";
-  kind.textContent = project.type === "game" ? ".zgame" : ".zapp";
+  kind.textContent = projectExtension(project.type);
   const state = document.createElement("span");
   state.className = "project-state";
   const isDraft = String(project.status || "draft").toLowerCase() === "draft";

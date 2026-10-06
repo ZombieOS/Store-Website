@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Browse every application available on the ZOS Store.">
-  <title>Apps — ZOS Store</title>
+  <meta name="description" content="Browse every dependency package available on the ZOS Store.">
+  <title>Packages — ZOS Store</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/apps.css">
-  <script type="module" src="js/apps.js?v=2"></script>
+  <script type="module" src="js/packages.js?v=1"></script>
   <script type="module" src="js/session.js?v=2"></script>
 </head>
 <body>
   <header class="site-header shell">
     <a class="brand" href="index.html" aria-label="ZOS Store home"><img src="https://www.zsharp.zombieos.com/zsharp.png" alt=""><span>ZOS Store</span></a>
-    <nav aria-label="Main navigation"><a href="index.html">Home</a><a class="active" href="apps.html">Apps</a><a href="games.html">Games</a><a href="packages.html">Packages</a><a href="index.html#developers">Developers</a></nav>
+    <nav aria-label="Main navigation"><a href="index.html">Home</a><a href="apps.html">Apps</a><a href="games.html">Games</a><a class="active" href="packages.html">Packages</a><a href="index.html#developers">Developers</a></nav>
     <a class="nav-cta" data-account-control href="login.html">Sign in <span aria-hidden="true">→</span></a>
   </header>
 
@@ -21,15 +21,15 @@
     <section class="apps-hero shell">
       <div>
         <div class="eyebrow"><span></span> ZOS STORE CATALOG</div>
-        <h1>Every app.<br><em>One place.</em></h1>
+        <h1>Every package.<br><em>One place.</em></h1>
       </div>
-      <p>Explore reviewed and Store-signed <strong>.zapp</strong> applications built for the ZVM.</p>
+      <p>Explore reviewed <strong>.zpackage</strong> dependencies built for Z# projects.</p>
     </section>
 
-    <section class="catalog-tools shell" aria-label="App catalog controls">
+    <section class="catalog-tools shell" aria-label="Package catalog controls">
       <label class="search-box" for="app-search">
         <span aria-hidden="true">⌕</span>
-        <input id="app-search" type="search" placeholder="Search apps or publishers..." autocomplete="off">
+        <input id="app-search" type="search" placeholder="Search packages or publishers..." autocomplete="off">
         <kbd>Ctrl K</kbd>
       </label>
 
@@ -56,7 +56,7 @@
 
     <section class="apps-section shell" aria-live="polite">
       <div class="results-header">
-        <p><strong id="result-count">0</strong> <span id="result-label">apps</span></p>
+        <p><strong id="result-count">0</strong> <span id="result-label">packages</span></p>
         <button id="clear-search" type="button" hidden>Clear search</button>
       </div>
 
@@ -65,9 +65,9 @@
       <div class="empty-state" id="empty-state">
         <img src="https://www.zsharp.zombieos.com/zsharp.png" alt="">
         <p class="section-label">THE CATALOG IS READY</p>
-        <h2 id="empty-title">No apps published yet.</h2>
-        <p id="empty-copy">The first reviewed .zapp release will appear here automatically.</p>
-        <a class="primary-button" href="index.html#developers">Publish the first app <span>→</span></a>
+        <h2 id="empty-title">No packages published yet.</h2>
+        <p id="empty-copy">The first reviewed .zpackage release will appear here automatically.</p>
+        <a class="primary-button" href="index.html#developers">Publish the first package <span>→</span></a>
       </div>
     </section>
   </main>

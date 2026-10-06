@@ -1,5 +1,6 @@
 import { auth, db as accountDb } from "./firebase.js";
 import { storeApi } from "./store-api.js";
+import { projectTypeName } from "./project-types.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
 import { doc, getDoc } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
 
@@ -51,6 +52,7 @@ function renderOverview(projects) {
   document.querySelector("#dashboard-published").textContent = String(published.length);
   document.querySelector("#dashboard-apps").textContent = String(published.filter((project) => project.type === "app").length);
   document.querySelector("#dashboard-games").textContent = String(published.filter((project) => project.type === "game").length);
+  document.querySelector("#dashboard-packages").textContent = String(published.filter((project) => project.type === "package").length);
   projectStatus.hidden = true;
   projectEmpty.hidden = projects.length > 0;
   projectList.hidden = projects.length === 0;
@@ -60,7 +62,7 @@ function renderOverview(projects) {
     link.href = `project.html?v=${encodeURIComponent(project.id)}`;
     const details = document.createElement("div");
     const title = document.createElement("strong"); title.textContent = project.name || project.projectDisplayName || project.id;
-    const meta = document.createElement("span"); meta.textContent = `${project.type === "game" ? "Game" : "App"} · ${project.projectId || project.id}`;
+    const meta = document.createElement("span"); meta.textContent = `${projectTypeName(project.type)} · ${project.projectId || project.id}`;
     details.append(title, meta);
     const state = document.createElement("span"); state.className = "dashboard-project-state"; state.textContent = project.status || "draft";
     link.append(details, state);
