@@ -6,9 +6,9 @@
   <meta name="description" content="View a project on the ZOS Store.">
   <title>Project — ZOS Store</title>
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/project-page.css?v=3">
+  <link rel="stylesheet" href="css/project-page.css?v=4">
   <link rel="stylesheet" href="css/report.css">
-  <script type="module" src="js/project-page.js?v=8"></script>
+  <script type="module" src="js/project-page.js?v=9"></script>
   <script type="module" src="js/session.js?v=2"></script>
 </head>
 <body>
@@ -29,8 +29,6 @@
         <div class="project-heading"><div class="project-labels"><span id="project-type">.zapp</span><span id="project-state"></span></div><h1 id="project-name"></h1><p id="project-description"></p><div class="creator-line">By <a id="project-creator"></a><span class="creator-verified" id="creator-verified" title="Verified Store publisher" hidden>✓</span><span>•</span><span id="project-id"></span></div></div>
         <div class="project-action"><button class="primary-button" id="download-button" type="button">Download <span>↓</span></button><strong id="download-count">0 downloads</strong><button class="follow-button" id="project-follow" type="button">Follow project</button><button class="report-button" id="report-project" type="button">Report project</button></div>
       </div>
-
-      <section class="dependency-link" id="dependency-link" hidden><div><p class="section-label">DEPENDENCY DOWNLOAD</p><h2>Versioned package link</h2><p>Use this URL when a Z# project needs this exact package version.</p><code id="dependency-url"></code><p class="dependency-hash">SHA-256: <code id="dependency-sha"></code></p></div><button class="follow-button" id="copy-dependency-url" type="button">Copy link</button></section>
 
       <section class="project-facts" aria-label="Project details">
         <div><span>Rating</span><strong id="project-rating">No reviews</strong></div><div><span>Version</span><strong id="project-version">—</strong></div><div><span>Released</span><strong id="release-date">Not released</strong></div><div><span>Updated</span><strong id="update-date">—</strong></div>

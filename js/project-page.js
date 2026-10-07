@@ -4,7 +4,6 @@ import { auth } from "./firebase.js";
 import { storeApi } from "./store-api.js";
 import { setupFollow } from "./follow.js";
 import { projectExtension } from "./project-types.js";
-import { STORE_API_URL } from "./store-config.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
 
 const requestedId = new URLSearchParams(location.search).get("v")?.trim() || "";
@@ -48,17 +47,6 @@ function renderProject(project, reviews) {
   setText("#project-name", project.name || project.projectDisplayName || "Untitled project");
   setText("#project-description", project.description || "No description has been added yet.");
   setText("#project-id", project.projectId || requestedId);
-  const dependencyLink = document.querySelector("#dependency-link");
-  dependencyLink.hidden = project.type !== "package" || project.status !== "published";
-  if (!dependencyLink.hidden) {
-    const url = `${STORE_API_URL.replace(/\/$/, "")}/?action=download&project=${encodeURIComponent(project.id)}&version=${encodeURIComponent(project.version)}`;
-    document.querySelector("#dependency-url").textContent = url;
-    document.querySelector("#dependency-sha").textContent = project.sha256 || "Unavailable";
-    document.querySelector("#copy-dependency-url").onclick = async () => {
-      await navigator.clipboard.writeText(url);
-      document.querySelector("#copy-dependency-url").textContent = "Copied ✓";
-    };
-  }
   setText("#project-version", project.version || project.projectVersion || "—");
   setText("#release-date", project.releaseDate ? dateLabel(project.releaseDate) : "Not released");
   setText("#update-date", dateLabel(project.mostRecentUpdate || project.updatedAt));
